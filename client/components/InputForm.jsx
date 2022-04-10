@@ -42,6 +42,15 @@ const InputForm = () => {
     setOpen(true);
   };
 
+  function getCurrentDate(separator=''){
+    let newDate = new Date()
+    let date = newDate.getDate();
+    let month = newDate.getMonth() + 1;
+    let year = newDate.getFullYear();
+    
+    return `${year}${separator}${month<10?`0${month}`:`${month}`}${separator}${date}`
+    }
+
   const handleClose = () => {
     setOpen(false);
   };
@@ -64,9 +73,11 @@ const InputForm = () => {
     formState: { errors },
   } = useForm({ userId: user });
 
+  
   // if no error on submit button click, post the content
   const onSubmit = (data, e) => {
     data.UserID = user;
+    //data.created_at = '2022-02-29 20:04:11-06';
     console.log("line 51", data, e);
       fetch('/ticket/create', {
       method: 'POST',
@@ -79,8 +90,6 @@ const InputForm = () => {
       handleClickOpen();
     })
     .catch(err => console.log('Submit Form Error :', err))
-
-
     reset(data);
 
   };
@@ -95,7 +104,7 @@ const InputForm = () => {
 
   return (
     <div>
-      <Link to="/dashboard" variant="body2" className={classes.margin}>
+      <Link to="/" variant="body2" className={classes.margin}>
         <HomeIcon color="primary" className={classes.margin}/>
       </Link>
       <Container component={Paper} className={classes.padding30}>
@@ -149,7 +158,7 @@ const InputForm = () => {
             </DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Link to="/dashboard" variant="body2" className={classes.margin}>
+            <Link to="/" variant="body2" className={classes.margin}>
               <Button onClick={handleClose} color="primary" autoFocus>
                 {baseConfig.OK_BUTTON_LABEL}
               </Button>

@@ -28,6 +28,7 @@ ticketController.createTicket = (req, res, next) => {
     TriedSolution,
     SuspectedIssue,
     ZoomLink,
+    //created_at
   } = req.body;
 
   let values = [];
@@ -37,7 +38,7 @@ ticketController.createTicket = (req, res, next) => {
   // make query string
   const queryStr =
     'INSERT INTO "public"."TicketTable" ("UserID", "CategoryID", "ProblemStatement", "ExpectedBehavior", "TriedSolution", "SuspectedIssue", "ZoomLink", "image_links")' +
-    " VALUES($1, $2, $3, $4, $5, $6, $7, $8 )";
+    " VALUES($1, $2, $3, $4, $5, $6, $7, $8)";
 
   db.query(getID)
     .then((data) => {
@@ -47,6 +48,7 @@ ticketController.createTicket = (req, res, next) => {
     .then((id) => {
       values = [
         UserID,
+        //created_at,
         id,
         ProblemStatement,
         ExpectedBehavior,

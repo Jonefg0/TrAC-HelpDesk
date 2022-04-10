@@ -1,6 +1,6 @@
 export const baseConfig = {
     //dashboard
-    PAGE_HEADER:"TrAC Tickets",
+    PAGE_HEADER:"Bienvenido a la Mesa de ayuda de TrAC",
     PROBLEM_STATEMENT_LABEL:"Problema",
     CATEGORY_LABEL:"Categoría",
     CREATED_BY_LABEL:"Creado por",
