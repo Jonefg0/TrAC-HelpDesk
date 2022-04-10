@@ -2,16 +2,33 @@ const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const ticketController = require("./controllers/ticketController");
+const cors = require('cors')
+
 // const cors = require('cors');
 
-const PORT = 3000;
+const PORT = 3001;
 const app = express();
+
+app.use(cors())
 
 const signupRouter = require("./routes/signupRouter");
 const loginRouter = require('./routes/loginRouter');
 const ticketRouter = require("./routes/ticketRouter");
 const userController = require("./controllers/userController");
 // const sessionController = require('./controllers/sessionController');
+
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
+
+app.get("/api", (req, res) => {
+  res.json("Hello");
+});
 
 app.use(cookieParser());
 app.use(express.json());
@@ -20,11 +37,13 @@ app.use(express.urlencoded({ extended: true }));
 // Initial Page Request
 app.get("/", (req, res) => {
   res.status(200).sendFile(path.join(__dirname, "../index.html"));
+
 });
 
 app.use(express.static("client"));
 
 app.get("/categories", ticketController.getCategories, (req, res) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
   console.log("res.locals.categories", res.locals.categories);
   res.status(200).send(res.locals.categories);
 });
@@ -48,6 +67,8 @@ app.get("/cohort", userController.getCohorts, (req, res) => {
 
 // catch-all route handler for any requests to an unknown route
 app.use((req, res) => res.status(404).send("Error 404"));
+
+
 
 // global error handler
 app.use((err, req, res, next) => {

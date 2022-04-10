@@ -11,6 +11,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import InputBase from "@material-ui/core/InputBase";
 import { Link } from "react-router-dom";
 import { baseConfig } from "./baseConfig";
+import SupportIcon from "@material-ui/icons/ContactSupport"
 
 const useStyles = makeStyles((theme) => ({
   appBarStyle:{
@@ -77,7 +78,8 @@ export default function PageHeader(props) {
     <div className={classes.root}>
       <AppBar position="static" className={classes.appBarStyle}>
         <Toolbar>
-          <Typography variant="h3" className={classes.title}>
+        <SupportIcon/>
+          <Typography variant="h6" className={classes.title}>
             {baseConfig.PAGE_HEADER}
           </Typography>
           <Link to="/InputForm">

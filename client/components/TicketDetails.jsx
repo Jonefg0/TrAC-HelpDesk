@@ -70,7 +70,7 @@ function TicketDetails(props) {
 
     const response = {
       ...props.details,
-      responderID: user.UserID,
+      responderID: '1',
       status: baseConfig.STATUS_SOLVED,
 
     }
@@ -132,7 +132,7 @@ function TicketDetails(props) {
                   variant="outlined"
                 />
                 {/* FELLOW & ADMIN */}
-                {user.usertypeID <= 2 && 
+                {/*user.usertypeID <= 2 && */
                   <Button
                     variant="contained"
                     color="primary"
@@ -144,7 +144,7 @@ function TicketDetails(props) {
                   </Button>
                 }
                 {/* ADMIN ONLY */}
-                {user.usertypeID === 1 &&
+                {/*user.usertypeID === 1 &&*/
                   <Button
                     variant="contained"
                     color="secondary"
