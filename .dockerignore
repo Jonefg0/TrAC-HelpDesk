@@ -1,0 +1,6 @@
+node_modules
+npm-debug.log
+os-heldesk*.sql
+README.md
+sql_queries.txt
+.git*

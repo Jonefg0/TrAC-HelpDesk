@@ -52,6 +52,11 @@ userController.verifyUser = (req, res, next) => {
     );
 };
 
+
+userController.test = (req,res,next) =>{
+  console.log("req TRACFID:", req.body)
+}
+
 userController.updateUser = (req, res, next) => {
   // deconstruct request body from front end
   const { UserID, username, password, cohortID, usertypeID } = req.body;
