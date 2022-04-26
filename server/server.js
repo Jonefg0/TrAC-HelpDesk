@@ -4,19 +4,15 @@ const cookieParser = require("cookie-parser");
 const ticketController = require("./controllers/ticketController");
 const cors = require('cors')
 
-// const cors = require('cors');
-
-const PORT = 3001;
+const PORT = 3000;
 const app = express();
 
 app.use(cors())
-
 const signupRouter = require("./routes/signupRouter");
 const loginRouter = require('./routes/loginRouter');
 const ticketRouter = require("./routes/ticketRouter");
 const userController = require("./controllers/userController");
 // const sessionController = require('./controllers/sessionController');
-
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.header(
@@ -26,21 +22,16 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get("/api", (req, res) => {
-  res.json("Hello");
-});
-
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Initial Page Request
 app.get("/", (req, res) => {
-  res.status(200).sendFile(path.join(__dirname, "../index.html"));
-
+  res.status(200).sendFile(path.join(__dirname, "../public/index.html"));
 });
 
-app.use(express.static("client"));
+app.use(express.static("public"));
 
 app.get("/categories", ticketController.getCategories, (req, res) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
