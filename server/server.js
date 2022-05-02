@@ -31,13 +31,13 @@ app.get("/", (req, res) => {
   res.status(200).sendFile(path.join(__dirname, "../public/index.html"));
 });
 
-app.use(express.static("public"));
-
 app.get("/categories", ticketController.getCategories, (req, res) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   console.log("res.locals.categories", res.locals.categories);
   res.status(200).send(res.locals.categories);
 });
+
+app.use(express.static("public"));
 /**
  * define route handlers
  */
